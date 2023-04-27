@@ -2,7 +2,7 @@ import React, { useState } from "react";
 const Form2 = () => {
 
     const [vehicleType, setVehicleType] = useState('');
-    const [VehiclesubType, setVehiclesubType] = useState([]);
+    // const [VehiclesubType, setVehiclesubType] = useState([]);
 
 
     const handlevehicletypechange = (e) => {
