@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const Form2 = () => {
 
     const [vehicleType, setVehicleType] = useState('');
-    // const [VehiclesubType, setVehiclesubType] = useState([]);
+    const [VehiclesubType, setVehiclesubType] = useState([]);
+
+    useEffect(() => {
+        if (vehicleType) {
+            axios.get("/vehicle")
+                .then(response => { setVehiclesubType(response.data) })
+                .catch(error => { console.log(error) })
+        }
+        else {
+            setVehicleType([]);
+        }
+    }, [vehicleType])
 
 
     const handlevehicletypechange = (e) => {
@@ -34,6 +46,13 @@ const Form2 = () => {
                 />
                 4-Wheeler
             </label>
+            <br></br>
+            <p>Vehicle-Sub-Types</p>
+            <ul>
+                {VehiclesubType.map(subtype => (
+                    <li key={subtype}>{subtype}</li>
+                ))}
+            </ul>
         </form>
     )
 }
